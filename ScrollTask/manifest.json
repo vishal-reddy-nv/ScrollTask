@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "ScrollTask",
+  "version": "1.0.1",
+  "description": "Turn doom-scrolling into achievement. Break goals into micro-tasks and conquer distractions.",
+  "permissions": [
+    "storage",
+    "alarms",
+    "tabs",
+    "notifications",
+    "scripting"
+  ],
+  "optional_host_permissions": [
+    "*://*/*"
+  ],
+  "host_permissions": [
+    "https://api.groq.com/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "ScrollTask",
+    "default_icon": {
+      "16": "icon_16.png",
+      "128": "icon_128.png"
+    }
+  },
+  "icons": {
+    "16": "icon_16.png",
+    "128": "icon_128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.instagram.com/*",
+        "*://instagram.com/*",
+        "*://*.reddit.com/*",
+        "*://reddit.com/*",
+        "*://*.x.com/*",
+        "*://x.com/*",
+        "*://*.twitter.com/*",
+        "*://twitter.com/*",
+        "*://*.facebook.com/*",
+        "*://facebook.com/*",
+        "*://*.youtube.com/*",
+        "*://youtube.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
